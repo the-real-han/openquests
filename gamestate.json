@@ -1,5 +1,5 @@
 {
-  "day": 2,
+  "day": 3,
   "locations": {
     "town_square": {
       "id": "town_square",
@@ -40,20 +40,48 @@
         "joinedDay": 1,
         "lastActionDay": 1
       }
+    },
+    "2": {
+      "playerId": 2,
+      "github": {
+        "username": "player2",
+        "issueNumber": 2,
+        "userId": 102
+      },
+      "character": {
+        "name": "player2",
+        "class": "Adventurer",
+        "title": "Wanderer",
+        "backstory": ""
+      },
+      "location": "town_square",
+      "status": {
+        "alive": true
+      },
+      "meta": {
+        "joinedDay": 2,
+        "lastActionDay": 2
+      }
     }
   },
   "locationLogs": {
     "town_square": {
-      "day": 2,
-      "summary": "A lone adventurer lingers here. The center of the village. It is safe here.",
-      "population": 1,
+      "day": 3,
+      "summary": "A small group of adventurers gather here. The center of the village. It is safe here.",
+      "population": 2,
       "notes": []
     },
     "forest_edge": {
-      "day": 2,
+      "day": 3,
       "summary": "The area is quiet and undisturbed. The edge of the dark forest. Goblins are rumored to be near.",
       "population": 0,
       "notes": []
     }
+  },
+  "worldLog": {
+    "day": 3,
+    "summary": "The world stirs as adventurers continue their journeys.\n\n---\n\n### Forest Edge\nThe area is quiet.\n### Town Square\nA small group is present here.",
+    "population": 2,
+    "notes": []
   }
 }

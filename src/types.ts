@@ -9,7 +9,15 @@ export interface GameState {
     day: number;
     locations: Record<LocationId, LocationState>;
     players: Record<string, Player>;
+    worldLog: WorldLog;
     locationLogs: Record<LocationId, LocationLog>;
+}
+
+export interface WorldLog {
+    day: number;
+    summary: string;
+    population: number;
+    notes?: string[];
 }
 
 export interface LocationLog {

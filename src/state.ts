@@ -47,6 +47,12 @@ function getInitialState(): GameState {
             }
         },
         players: {},
+        worldLog: {
+            day: 1,
+            summary: 'The world stirs as adventurers continue their journeys.',
+            population: 0,
+            notes: []
+        },
         locationLogs: {}
     };
 }

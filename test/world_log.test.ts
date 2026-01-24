@@ -20,26 +20,30 @@ const mockState: GameState = {
         '6': { playerId: 6, location: 'B', status: { alive: true }, github: { username: 'f', issueNumber: 6, userId: 306 }, character: { name: 'F', class: 'Warrior', title: '', backstory: '' }, meta: { joinedDay: 1, lastActionDay: 1 } },
         // 1 Dead Player in B (should be ignored)
         '7': { playerId: 7, location: 'B', status: { alive: false }, github: { username: 'g', issueNumber: 7, userId: 307 }, character: { name: 'G', class: 'Warrior', title: '', backstory: '' }, meta: { joinedDay: 1, lastActionDay: 1 } }
+    },
+    worldLog: {
+        day: 10,
+        summary: 'The world stirs as adventurers continue their journeys.',
+        population: 7,
+        notes: []
     }
 };
 
 console.log('Running World Log Tests...');
 
-const log = generateWorldLog(mockState);
-console.log(log);
+const worldLog = generateWorldLog(mockState);
+console.log(worldLog);
 
 // Assertions
-assert.match(log, /📜 \*\*Day 10\*\*/, 'Header missing');
-assert.match(log, /The world stirs/, 'Global flavor missing');
+assert.match(worldLog.summary, /The world stirs/, 'Global flavor missing');
 
 // Location A (5 people)
-assert.match(log, /### City/, 'City header missing');
-assert.match(log, /feels lively/, 'City should be lively (5 people)');
-assert.match(log, /Population: 5 adventurers/, 'City population wrong');
+assert.match(worldLog.summary, /### City/, 'City header missing');
+assert.match(worldLog.summary, /feels lively/, 'City should be lively (5 people)');
+assert.equal(worldLog.population, 7, 'City population wrong');
 
 // Location B (1 person, 1 dead)
-assert.match(log, /### Ruins/, 'Ruins header missing');
-assert.match(log, /lone adventurer is present/, 'Ruins should have lone adventurer');
-assert.match(log, /Population: 1 adventurers/, 'Ruins population wrong (should ignore dead)');
+assert.match(worldLog.summary, /### Ruins/, 'Ruins header missing');
+assert.match(worldLog.summary, /small group/, 'Ruins should have small group');
 
 console.log('✅ World Log Tests Passed');

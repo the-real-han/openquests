@@ -17,6 +17,12 @@ const mockState: GameState = {
         '3': { playerId: 3, location: 'B', status: { alive: true }, github: { username: 'u3', issueNumber: 3, userId: 3 }, character: { name: 'C3', class: 'Adventurer', title: '', backstory: '' }, meta: { joinedDay: 1, lastActionDay: 1 } },
         '4': { playerId: 4, location: 'B', status: { alive: true }, github: { username: 'u4', issueNumber: 4, userId: 4 }, character: { name: 'C4', class: 'Adventurer', title: '', backstory: '' }, meta: { joinedDay: 1, lastActionDay: 1 } },
         '5': { playerId: 5, location: 'B', status: { alive: true }, github: { username: 'u5', issueNumber: 5, userId: 5 }, character: { name: 'C5', class: 'Adventurer', title: '', backstory: '' }, meta: { joinedDay: 1, lastActionDay: 1 } },
+    },
+    worldLog: {
+        day: 1,
+        summary: 'The world stirs as adventurers continue their journeys.',
+        population: 5,
+        notes: []
     }
 };
 

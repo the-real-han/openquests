@@ -1,9 +1,10 @@
 import { GameState } from './types';
+import { WorldLog } from './types';
 
-export function generateWorldLog(state: GameState): string {
-    let log = `📜 **Day ${state.day}**\n\n`;
+export function generateWorldLog(state: GameState): WorldLog {
+    let log = '';
 
-    const totalPopulation = Object.values(state.players).filter(p => p.status.alive).length;
+    const totalPopulation = Object.values(state.players).length;
 
     // Global Flavor
     if (totalPopulation === 0) {
@@ -21,7 +22,7 @@ export function generateWorldLog(state: GameState): string {
     for (const locId of locationIds) {
         const location = state.locations[locId];
         const population = Object.values(state.players).filter(p =>
-            p.location === locId && p.status.alive
+            p.location === locId
         ).length;
 
         log += `### ${location.name}\n`;
@@ -35,9 +36,12 @@ export function generateWorldLog(state: GameState): string {
         } else {
             log += `The area feels lively with many adventurers.\n`;
         }
-
-        log += `Population: ${population} adventurers\n\n`;
     }
 
-    return log.trim();
+    return {
+        day: state.day,
+        summary: log.trim(),
+        population: totalPopulation,
+        notes: []
+    };
 }

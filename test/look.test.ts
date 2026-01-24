@@ -34,6 +34,12 @@ const mockState: GameState = {
             status: { alive: true },
             meta: { joinedDay: 1, lastActionDay: 1 }
         }
+    },
+    worldLog: {
+        day: 5,
+        summary: 'The world stirs as adventurers continue their journeys.',
+        population: 3,
+        notes: []
     }
 };
 

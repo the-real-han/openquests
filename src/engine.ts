@@ -1,4 +1,5 @@
 import { GameState, Action, TickResult, Player } from './types';
+import { generateWorldLog } from './world_log';
 
 /**
  * Pure function to process a single tick of the game world.
@@ -75,13 +76,15 @@ export function processTick(initialState: GameState, actions: Action[], players:
         playerResults[action.playerId] = resultMessage;
     }
 
-    // 3. Update World
     // 3. Update World & Generate Logs
+    const worldLog = generateWorldLog(nextState);
+    nextState.worldLog = worldLog;
+
     if (!nextState.locationLogs) nextState.locationLogs = {};
 
     for (const locId of Object.keys(nextState.locations)) {
         const population = Object.values(nextState.players).filter((p: Player) =>
-            p.location === locId && p.status.alive
+            p.location === locId
         ).length;
 
         let summary = '';

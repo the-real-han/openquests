@@ -27,6 +27,12 @@ const mockState: GameState = {
             status: { alive: true },
             meta: { joinedDay: 1, lastActionDay: 1 }
         }
+    },
+    worldLog: {
+        day: 1,
+        summary: 'Day 1 has ended. Travelers moved between the known locations.',
+        population: 2,
+        notes: []
     }
 };
 
