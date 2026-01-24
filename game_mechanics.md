@@ -234,6 +234,54 @@ No concrete mechanics are required initially, but the architecture should not bl
 
 ---
 
+## Minimum Playable Loop (MPL)
+
+The Minimum Playable Loop defines the smallest complete cycle that allows a player to meaningfully participate in the game world. All features must support or extend this loop.
+
+1. Player Joins the World
+A player creates a GitHub Issue using the Player Join issue template.
+The issue represents the player’s identity.
+On the next daily tick:
+If the issue is new, a Player entry is created in gamestate.json.
+The player is assigned:
+A unique playerId
+A starting location
+A character class (from allowed defaults or template selection)
+The system posts a welcome comment confirming successful entry.
+2. Player Submits an Action
+A player submits an action by commenting on their Issue.
+Only the latest valid comment before the daily tick is considered.
+Supported actions are parsed deterministically (e.g. MOVE forest, WAIT).
+Invalid or unrecognized input resolves to a safe default (WAIT).
+3. Daily Tick Resolution
+A scheduled GitHub Action runs once per day.
+The tick performs the following steps in order:
+Load the current gamestate.json
+Fetch all active player issues
+Parse each player’s latest action
+Resolve all actions simultaneously using processTick
+Advance the world day by 1
+Persist the updated game state
+4. World State Updates
+The game state is the single source of truth.
+State changes may include:
+Player location changes
+Status updates
+World events triggered by actions
+Resolution is deterministic and reproducible from inputs.
+5. Player Feedback
+After resolution, the system posts a comment to each player’s Issue:
+Acknowledging the resolved action
+Optionally providing narrative or status feedback
+No real-time interaction exists; all feedback is asynchronous.
+6. Loop Repeats
+Players read the outcome.
+Players submit a new action.
+The next daily tick resolves it.
+This loop repeats indefinitely and constitutes the core gameplay of OpenQuests.
+
+---
+
 ## Development Philosophy
 
 - Start with the smallest playable loop

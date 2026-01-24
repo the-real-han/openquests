@@ -1,0 +1,55 @@
+{
+  "day": 2,
+  "locations": {
+    "town_square": {
+      "description": "The center of the village. It is safe here."
+    },
+    "forest_edge": {
+      "description": "The edge of the dark forest. Goblins are rumored to be near."
+    }
+  },
+  "players": {
+    "1": {
+      "playerId": 1,
+      "github": {
+        "username": "player1",
+        "issueNumber": 1
+      },
+      "character": {
+        "name": "player1",
+        "class": "Adventurer",
+        "title": "Wanderer",
+        "backstory": ""
+      },
+      "location": "town_square",
+      "status": {
+        "alive": true
+      },
+      "meta": {
+        "joinedDay": 1,
+        "lastActionDay": 1
+      }
+    },
+    "2": {
+      "playerId": 2,
+      "github": {
+        "username": "player2",
+        "issueNumber": 2
+      },
+      "character": {
+        "name": "player2",
+        "class": "Adventurer",
+        "title": "Wanderer",
+        "backstory": ""
+      },
+      "location": "town_square",
+      "status": {
+        "alive": true
+      },
+      "meta": {
+        "joinedDay": 1,
+        "lastActionDay": 1
+      }
+    }
+  }
+}
