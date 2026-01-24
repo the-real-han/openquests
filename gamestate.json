@@ -2,10 +2,20 @@
   "day": 2,
   "locations": {
     "town_square": {
-      "description": "The center of the village. It is safe here."
+      "id": "town_square",
+      "name": "Town Square",
+      "description": "The center of the village. It is safe here.",
+      "exits": [
+        "forest_edge"
+      ]
     },
     "forest_edge": {
-      "description": "The edge of the dark forest. Goblins are rumored to be near."
+      "id": "forest_edge",
+      "name": "Forest Edge",
+      "description": "The edge of the dark forest. Goblins are rumored to be near.",
+      "exits": [
+        "town_square"
+      ]
     }
   },
   "players": {
@@ -13,7 +23,8 @@
       "playerId": 1,
       "github": {
         "username": "player1",
-        "issueNumber": 1
+        "issueNumber": 1,
+        "userId": 101
       },
       "character": {
         "name": "player1",
@@ -29,27 +40,20 @@
         "joinedDay": 1,
         "lastActionDay": 1
       }
+    }
+  },
+  "locationLogs": {
+    "town_square": {
+      "day": 2,
+      "summary": "A lone adventurer lingers here. The center of the village. It is safe here.",
+      "population": 1,
+      "notes": []
     },
-    "2": {
-      "playerId": 2,
-      "github": {
-        "username": "player2",
-        "issueNumber": 2
-      },
-      "character": {
-        "name": "player2",
-        "class": "Adventurer",
-        "title": "Wanderer",
-        "backstory": ""
-      },
-      "location": "town_square",
-      "status": {
-        "alive": true
-      },
-      "meta": {
-        "joinedDay": 1,
-        "lastActionDay": 1
-      }
+    "forest_edge": {
+      "day": 2,
+      "summary": "The area is quiet and undisturbed. The edge of the dark forest. Goblins are rumored to be near.",
+      "population": 0,
+      "notes": []
     }
   }
 }
