@@ -3,8 +3,6 @@ name: Deploy Game UI
 on:
   push:
     branches: [master]
-    paths:
-      - "/**"
 
 permissions:
   contents: read
