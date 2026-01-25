@@ -12,9 +12,9 @@ labels: ["player"]
 (Select one, or leave blank to start as Adventurer)
 
 - [ ] Warrior
-- [ ] Mage
-- [ ] Rogue
-- [ ] Blacksmith
+- [ ] Lancer
+- [ ] Archer
+- [ ] Monk
 
 ## Optional Backstory
 (1–2 sentences, purely for flavor)

@@ -1,4 +1,4 @@
-export declare const PLAYER_CLASSES: readonly ["Warrior", "Mage", "Rogue", "Blacksmith", "Adventurer"];
+export declare const PLAYER_CLASSES: readonly ["Warrior", "Lancer", "Archer", "Monk", "Adventurer"];
 export type PlayerClass = typeof PLAYER_CLASSES[number];
 export interface Player {
     playerId: number;

@@ -21,7 +21,7 @@ const mockState: GameState = {
         '2': {
             playerId: 2,
             github: { username: 'bob', issueNumber: 2, userId: 202 },
-            character: { name: 'Bob', class: 'Mage', title: '', backstory: '' },
+            character: { name: 'Bob', class: 'Archer', title: '', backstory: '' },
             location: 'A',
             status: { alive: true },
             meta: { joinedDay: 1, lastActionDay: 1 }
@@ -29,7 +29,7 @@ const mockState: GameState = {
         '3': {
             playerId: 3,
             github: { username: 'charlie', issueNumber: 3, userId: 203 },
-            character: { name: 'Charlie', class: 'Mage', title: '', backstory: '' },
+            character: { name: 'Charlie', class: 'Lancer', title: '', backstory: '' },
             location: 'B',
             status: { alive: true },
             meta: { joinedDay: 1, lastActionDay: 1 }

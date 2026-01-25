@@ -1,8 +1,8 @@
 export const PLAYER_CLASSES = [
     'Warrior',
-    'Mage',
-    'Rogue',
-    'Blacksmith',
+    'Lancer',
+    'Archer',
+    'Monk',
     'Adventurer'
 ] as const;
 
