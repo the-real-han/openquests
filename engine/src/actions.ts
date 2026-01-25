@@ -1,4 +1,4 @@
-import { Action } from './types';
+import { Action } from '@openquests/schema';
 
 export const VALID_ACTIONS = ['MOVE', 'ATTACK', 'WAIT'] as const;
 

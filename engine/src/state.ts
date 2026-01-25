@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { GameState } from './types';
+import { GameState } from '@openquests/schema';
 
 const STATE_FILE = 'gamestate.json';
 

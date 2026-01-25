@@ -1,4 +1,4 @@
-import { PlayerClass, PLAYER_CLASSES } from './classes';
+import { GameState, Player, Action, PlayerClass, PLAYER_CLASSES } from '@openquests/schema';
 
 interface ParsedCharacter {
     name?: string;

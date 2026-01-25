@@ -1,4 +1,4 @@
-import { GameState, Player, LocationId } from '../types';
+import { GameState, Player } from '@openquests/schema';
 
 export function generateLookResponse(state: GameState, requestingPlayerId: string): string {
     const player = state.players[requestingPlayerId];

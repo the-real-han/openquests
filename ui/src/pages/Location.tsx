@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useGameState } from '../hooks/useGameState';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
+import type { LocationState } from '@openquests/schema';
 import AvatarMenu from '../components/AvatarMenu';
 import PlayerPanel from '../components/PlayerPanel';
 
@@ -73,7 +74,7 @@ export default function Location() {
                 <p className="text-slate-400 italic mb-6">{location.description}</p>
 
                 {showPlayerPanel && currentPlayer && (
-                    <PlayerPanel player={currentPlayer} location={location} />
+                    <PlayerPanel player={currentPlayer} location={location as LocationState} />
                 )}
 
                 {locationLog && (

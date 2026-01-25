@@ -1,5 +1,4 @@
-import { GameState } from './types';
-import { WorldLog } from './types';
+import { GameState, WorldLog } from '@openquests/schema';
 
 export function generateWorldLog(state: GameState): WorldLog {
     let log = '';

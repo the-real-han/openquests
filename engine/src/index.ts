@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { loadState, saveState } from './state';
 import { processTick } from './engine';
-import { Action, Player } from './types';
+import { Action, Player } from '@openquests/schema';
 import { GameInputs, MockAdapter, GitHubAdapter } from './github_adapter';
 import { parseAction } from './actions';
 import { parseIssueBody } from './parser';

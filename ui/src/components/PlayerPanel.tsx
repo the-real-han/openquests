@@ -1,8 +1,8 @@
-import type { Player, Location } from '../types';
+import type { Player, LocationState } from '@openquests/schema';
 
 interface PlayerPanelProps {
     player: Player;
-    location: Location;
+    location: LocationState;
 }
 
 export default function PlayerPanel({ player, location }: PlayerPanelProps) {

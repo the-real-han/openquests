@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
-import type { Player } from '../types';
+import type { Player } from '@openquests/schema';
 import { useGameState } from '../hooks/useGameState';
 
 interface MockUser {

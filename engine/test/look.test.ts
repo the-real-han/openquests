@@ -1,5 +1,5 @@
 import { generateLookResponse } from '../src/queries/look';
-import { GameState } from '../src/types';
+import { GameState } from '@openquests/schema';
 import * as assert from 'assert';
 
 const mockState: GameState = {

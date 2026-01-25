@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { GameState } from '../types';
+import type { GameState } from '@openquests/schema';
 
 interface UseGameStateResult {
     data: GameState | null;

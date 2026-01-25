@@ -1,7 +1,7 @@
-import type { Location, LocationLog } from '../types';
+import type { LocationState, LocationLog } from '@openquests/schema';
 
 interface WorldMapProps {
-    locations: Record<string, Location>;
+    locations: Record<string, LocationState>;
     locationLogs: Record<string, LocationLog>;
     onLocationClick: (locationId: string) => void;
 }

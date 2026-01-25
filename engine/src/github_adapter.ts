@@ -1,3 +1,4 @@
+import { Player, GameState } from '@openquests/schema';
 import * as github from '@actions/github';
 
 

@@ -1,4 +1,4 @@
-import { GameState, Action, TickResult, Player } from './types';
+import { GameState, Action, TickResult, Player } from '@openquests/schema';
 import { generateWorldLog } from './world_log';
 
 /**

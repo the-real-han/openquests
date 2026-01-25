@@ -1,5 +1,5 @@
 import { processTick } from '../src/engine';
-import { GameState, Player, Action } from '../src/types';
+import { GameState, Player, Action } from '@openquests/schema';
 import * as assert from 'assert';
 
 const mockState: GameState = {
