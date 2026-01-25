@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { GameState } from '@openquests/schema';
+import { WORLD_STATE_URL } from '../config/world';
 
 interface UseGameStateResult {
     data: GameState | null;
@@ -13,7 +14,7 @@ export function useGameState(): UseGameStateResult {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/gamestate.json')
+        fetch(WORLD_STATE_URL)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`Failed to fetch gamestate: ${response.statusText}`);
