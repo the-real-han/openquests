@@ -4,7 +4,7 @@ import { Action, PlayerClass, PLAYER_CLASSES } from '@openquests/schema';
 import { loadState } from './state';
 import { generateLookResponse } from './queries/look';
 
-async function run() {
+export async function handleComment() {
     try {
         const context = github.context;
         // Event Trigger: issue_comment
@@ -80,5 +80,3 @@ async function run() {
         }
     }
 }
-
-run();

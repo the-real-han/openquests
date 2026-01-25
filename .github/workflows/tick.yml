@@ -2,41 +2,60 @@ name: Daily Game Tick
 
 on:
   schedule:
-    # Run once a day at midnight UTC
     - cron: '0 0 * * *'
   workflow_dispatch:
-    # Allow manual triggering
 
 permissions:
-  contents: write # To commit state changes
-  issues: write   # To read/comment on issues
+  contents: write
+  issues: write
 
 jobs:
   tick:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
+    steps:
+      # 1. Checkout playground (this repo)
+      - name: Checkout playground
+        uses: actions/checkout@v4
+        with:
+          path: playground
+
+      # 2. Checkout engine repo
+      - name: Checkout openquests engine
+        uses: actions/checkout@v4
+        with:
+          repository: the-real-han/openquests
+          path: engine
+
+      # 3. Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: engine/package-lock.json
 
-      - name: Install Dependencies
+      # 4. Install + build engine
+      - name: Install engine dependencies
+        working-directory: engine
         run: npm ci
 
-      - name: Build Project
+      - name: Build engine
+        working-directory: engine
         run: npm run build
 
-      - name: Run Game Tick
-        run: npm run tick
+      # 5. Run tick against playground world
+      - name: Run world tick
+        working-directory: playground
+        run: |
+          node ../engine/dist/cli.js tick
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit State Changes
+      # 6. Commit updated gamestate
+      - name: Commit state changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Daily Tick: Day ${{ env.GAME_DAY }}"
-          file_pattern: 'gamestate.json'
+          commit_message: "Daily Tick"
+          file_pattern: gamestate.json
+          repository: playground

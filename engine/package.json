@@ -1,8 +1,11 @@
 {
-  "name": "openquests-engine",
+  "name": "@openquests/engine",
   "version": "1.0.0",
   "description": "Daily tick engine for GitHub-native D&D",
   "main": "dist/index.js",
+  "bin": {
+    "openquests": "dist/cli.js"
+  },
   "scripts": {
     "build": "tsc",
     "tick": "ts-node src/index.ts",

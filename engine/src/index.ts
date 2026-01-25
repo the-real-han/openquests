@@ -8,7 +8,7 @@ import { parseAction } from './actions';
 import { parseIssueBody } from './parser';
 import { generateWorldLog } from './world_log';
 
-async function run() {
+export async function runTick() {
     try {
         const workspace = process.env.GITHUB_WORKSPACE || './';
         const token = process.env.GITHUB_TOKEN;
@@ -161,4 +161,4 @@ async function run() {
     }
 }
 
-run();
+runTick()

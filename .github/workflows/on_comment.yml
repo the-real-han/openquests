@@ -5,27 +5,28 @@ on:
     types: [created]
 
 permissions:
-  contents: read   # To read gamestate.json
-  issues: write    # To reply to issues
+  contents: read
+  issues: write
 
 jobs:
   handle_comment:
     runs-on: ubuntu-latest
-    if: ${{ !github.event.issue.pull_request }} # Ignore PR comments
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    if: ${{ !github.event.issue.pull_request }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Run Comment Handler
-        run: npx ts-node src/handle_comment.ts
+      - name: Install engine
+        run: npm install github:the-real-han/openquests-engine
+
+      - name: Handle comment
+        run: npx openquests handle-comment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
