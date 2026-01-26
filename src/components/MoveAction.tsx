@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Player, LocationState } from '@openquests/schema';
-import { postIssueComment } from '../config/github';
+import { postIssueComment } from '../config/auth';
 import { AUTH_TOKEN_KEY } from '../config/auth';
 
 interface MoveActionProps {
