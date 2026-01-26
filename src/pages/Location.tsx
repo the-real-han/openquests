@@ -74,7 +74,13 @@ export default function Location() {
                 <p className="text-slate-400 italic mb-6">{location.description}</p>
 
                 {showPlayerPanel && currentPlayer && (
-                    <PlayerPanel player={currentPlayer} location={location as LocationState} />
+                    <PlayerPanel
+                        player={currentPlayer}
+                        location={location as LocationState}
+                        exits={location.exits}
+                        allLocations={data.locations}
+                        currentDay={data.worldLog.day}
+                    />
                 )}
 
                 {locationLog && (

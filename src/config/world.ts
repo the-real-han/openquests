@@ -3,11 +3,12 @@
  */
 
 // The default playground world state URL
-const DEFAULT_WORLD_STATE_URL = 'https://raw.githubusercontent.com/the-real-han/openquests-playground/master/gamestate.json';
+export const WORLD_REPO = import.meta.env.VITE_WORLD_REPO || 'openquests-playground';
 
 /**
  * The resolved URL to fetch the game state from.
- * Prioritizes VITE_WORLD_STATE_URL environment variable, 
+ * Prioritizes VITE_WORLD_REPO environment variable, 
  * falling back to the official playground URL.
  */
-export const WORLD_STATE_URL = import.meta.env.VITE_WORLD_STATE_URL || DEFAULT_WORLD_STATE_URL;
+
+export const WORLD_STATE_URL = `https://raw.githubusercontent.com/the-real-han/${WORLD_REPO}/master/gamestate.json`;
