@@ -4,6 +4,7 @@ import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
 import type { LocationState } from '@openquests/schema';
 import AvatarMenu from '../components/AvatarMenu';
 import PlayerPanel from '../components/PlayerPanel';
+import { TiledMapViewer } from '../components/Tilemap';
 
 export default function Location() {
     const { id } = useParams<{ id: string }>();
@@ -72,6 +73,8 @@ export default function Location() {
             <main className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold mb-2">{location.name}</h1>
                 <p className="text-slate-400 italic mb-6">{location.description}</p>
+
+                <TiledMapViewer jsonPath="/village.json" />
 
                 {showPlayerPanel && currentPlayer && (
                     <PlayerPanel
