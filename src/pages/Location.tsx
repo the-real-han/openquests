@@ -57,7 +57,7 @@ export default function Location() {
                 <h1 className="text-3xl font-bold mb-2">{location.name}</h1>
                 <p className="text-slate-400 italic mb-6">{location.description}</p>
 
-                <TiledMapViewer jsonPath="/village.json" />
+                <TiledMapViewer jsonPath="map/village.json" />
 
                 {showPlayerPanel && currentPlayer && (
                     <PlayerPanel
