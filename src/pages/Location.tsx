@@ -2,14 +2,14 @@ import { useParams, Link } from 'react-router-dom';
 import { useGameState } from '../hooks/useGameState';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
 import type { LocationState } from '@openquests/schema';
-import AvatarMenu from '../components/AvatarMenu';
 import PlayerPanel from '../components/PlayerPanel';
+import Header from '../components/Header';
 import { TiledMapViewer } from '../components/Tilemap';
 
 export default function Location() {
     const { id } = useParams<{ id: string }>();
     const { data, loading, error } = useGameState();
-    const { isLoggedIn, login } = useAuth();
+    const { isLoggedIn } = useAuth();
     const currentPlayer = useCurrentPlayer();
 
     if (loading) {
@@ -51,24 +51,7 @@ export default function Location() {
 
     return (
         <div className="min-h-screen bg-slate-900 text-white">
-            <header className="bg-slate-800 p-4 shadow-lg">
-                <div className="container mx-auto flex justify-between items-center">
-                    <Link to="/" className="text-blue-400 hover:underline">← Back to World Map</Link>
-                    <div className="flex items-center gap-4">
-                        {isLoggedIn ? (
-                            <AvatarMenu />
-                        ) : (
-                            <button
-                                onClick={login}
-                                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2"
-                            >
-                                <span>🔐</span>
-                                <span>Login with GitHub</span>
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </header>
+            <Header />
 
             <main className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold mb-2">{location.name}</h1>

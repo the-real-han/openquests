@@ -119,7 +119,7 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
                         for (const tile of tileset.tiles) {
                             if (tile.image) {
                                 const img = new Image();
-                                const imagePath = tile.image.replace(/^base\//, '/assets/');
+                                const imagePath = tile.image.replace(/^base\//, 'assets/');
 
                                 await new Promise<void>((resolve) => {
                                     img.onload = () => resolve();
@@ -150,7 +150,7 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
                 } else {
                     // Regular tileset with single spritesheet
                     const img = new Image();
-                    const imagePath = tileset.image.replace(/^base\//, '/assets/');
+                    const imagePath = tileset.image.replace(/^base\//, 'assets/');
 
                     await new Promise<void>((resolve) => {
                         img.onload = () => resolve();
