@@ -11,4 +11,4 @@ export const WORLD_REPO = import.meta.env.VITE_WORLD_REPO || 'openquests-playgro
  * falling back to the official playground URL.
  */
 
-export const WORLD_STATE_URL = `/gamestate_mock.json`;
+export const WORLD_STATE_URL = `https://raw.githubusercontent.com/the-real-han/${WORLD_REPO}/main/gamestate.json`;
