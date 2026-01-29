@@ -410,6 +410,10 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
         <canvas
             ref={canvasRef}
             style={{
+                width: '100%',
+                maxWidth: '100%',
+                height: 'auto',
+                objectFit: 'contain',
                 display: 'block',
                 imageRendering: 'pixelated'
             }}
