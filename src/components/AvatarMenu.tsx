@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
+import StartAdventureDialog from './StartAdventureDialog';
 
 export default function AvatarMenu() {
     const { user, logout } = useAuth();
     const currentPlayer = useCurrentPlayer();
     const [isOpen, setIsOpen] = useState(false);
+    const [showStartAdventure, setShowStartAdventure] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
     // Close dropdown when clicking outside
@@ -31,6 +33,11 @@ export default function AvatarMenu() {
         setIsOpen(false);
     };
 
+    const handleStartAdventure = () => {
+        setIsOpen(false);
+        setShowStartAdventure(true);
+    };
+
     const handleLogout = () => {
         logout();
         setIsOpen(false);
@@ -40,39 +47,66 @@ export default function AvatarMenu() {
     if (!user) return null;
 
     return (
-        <div className="relative" ref={menuRef}>
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 hover:opacity-80 transition"
-                aria-label="User menu"
-            >
-                <img
-                    src={user.avatarUrl}
-                    alt={user.username}
-                    className="w-8 h-8 rounded-full border-2 border-slate-600"
-                />
-                <span className="text-sm hidden sm:inline">{user.username}</span>
-            </button>
+        <>
+            <div className="relative" ref={menuRef}>
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="flex items-center gap-2 hover:opacity-80 transition"
+                    aria-label="User menu"
+                >
+                    <img
+                        src={user.avatarUrl}
+                        alt={user.username}
+                        className="w-8 h-8 rounded-full border-2 border-slate-600"
+                    />
+                    <span className="text-sm hidden sm:inline">{user.username}</span>
+                </button>
 
-            {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg border border-slate-700 py-1 z-50">
-                    {currentPlayer && (
+                {isOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg border border-slate-700 py-1 z-50">
+                        {currentPlayer ? (
+                            <>
+                                <button
+                                    onClick={handleGoToCharacter}
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-slate-700 transition"
+                                >
+                                    🏰 Go to my character
+                                </button>
+                                <hr className="border-slate-700 my-1" />
+                            </>
+                        ) : (
+                            <>
+                                <button
+                                    onClick={handleStartAdventure}
+                                    className="w-full text-left px-4 py-2 text-sm hover:bg-slate-700 transition"
+                                >
+                                    ⚔️ Start an adventure
+                                </button>
+                                <hr className="border-slate-700 my-1" />
+                            </>
+                        )}
+
                         <button
-                            onClick={handleGoToCharacter}
+                            onClick={handleLogout}
                             className="w-full text-left px-4 py-2 text-sm hover:bg-slate-700 transition"
                         >
-                            🏰 Go to my character
+                            🚪 Log out
                         </button>
-                    )}
-                    {currentPlayer && <hr className="border-slate-700 my-1" />}
-                    <button
-                        onClick={handleLogout}
-                        className="w-full text-left px-4 py-2 text-sm hover:bg-slate-700 transition"
-                    >
-                        🚪 Log out
-                    </button>
-                </div>
+                    </div>
+                )}
+            </div>
+
+            {showStartAdventure && (
+                <StartAdventureDialog
+                    onClose={() => setShowStartAdventure(false)}
+                    onSuccess={() => {
+                        // Success handled in dialog, maybe refresh gamestate here if needed
+                        // But gamestate polling should pick it up eventually, or we could force a reload
+                        // For now we trust the dialog's success message flow
+                        setShowStartAdventure(false);
+                    }}
+                />
             )}
-        </div>
+        </>
     );
 }

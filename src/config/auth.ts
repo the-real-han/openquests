@@ -21,6 +21,7 @@ export const AUTH_ENDPOINTS = {
     CALLBACK: `${AUTH_WORKER_URL}/auth/github/callback`,
     ME: `${AUTH_WORKER_URL}/auth/me`,
     LOGOUT: `${AUTH_WORKER_URL}/auth/logout`,
+    CREATE_CHARACTER: `${AUTH_WORKER_URL}/api/create-character`,
 } as const;
 
 export const ACTION_ENDPOINT = `${AUTH_WORKER_URL}/action`;
@@ -40,7 +41,6 @@ export async function postIssueComment(
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -53,5 +53,39 @@ export async function postIssueComment(
     if (!response.ok) {
         const error = await response.json().catch(() => ({ message: response.statusText }));
         throw new Error(`Failed to post comment: ${error.message || response.statusText}`);
+    }
+}
+
+export interface CharacterData {
+    characterName: string;
+    characterClass: string;
+    backstory: string;
+}
+
+export async function createCharacter(
+    token: string,
+    data: CharacterData
+): Promise<void> {
+    const response = await fetch(AUTH_ENDPOINTS.CREATE_CHARACTER, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            world: WORLD_REPO,
+            ...data,
+        }),
+    });
+
+    if (!response.ok) {
+        // 409 is treated as success in the UI flow (user gets "A clan will accept you..." message)
+        // enabling them to proceed as if it worked, though technically it means they already have one pending/active
+        if (response.status === 409) {
+            return;
+        }
+
+        const error = await response.json().catch(() => ({ message: response.statusText }));
+        throw new Error(error.message || response.statusText || 'Failed to create character');
     }
 }
