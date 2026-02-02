@@ -41,7 +41,7 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen bg-[#47aba9] text-white bg-[url('assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
+        <div className="min-h-screen bg-[#47aba9] text-white bg-[url('/assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
             <Header />
 
             <main className="container mx-auto max-w-4xl p-4">
