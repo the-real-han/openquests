@@ -36,6 +36,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: OpenQuests
+          projectName: openquests
           directory: dist   # change to your build output folder
           # optional: wranglerVersion: '3'
