@@ -8,32 +8,40 @@ interface WorldMapProps {
 
 // Hardcoded positions for each location (static geography)
 const LOCATION_POSITIONS: Record<string, { x: number; y: number }> = {
-    town_square: { x: 250, y: 200 },
-    forest_edge: { x: 550, y: 200 },
+    blue_base: { x: 250, y: 200 },
+    red_base: { x: 550, y: 200 },
+    purple_base: { x: 250, y: 300 },
+    yellow_base: { x: 550, y: 300 },
+    black_base: { x: 250, y: 250 },
+    monsters_base: { x: 450, y: 200 }
 };
 
 export default function WorldMap({ locations, locationLogs, onLocationClick }: WorldMapProps) {
     // Extract unique connections from exits to avoid duplicate lines
     const getUniqueConnections = (): Array<[string, string]> => {
-        return [];
-        /*   const connections = new Set<string>();
+        const connections = new Set<string>();
 
-        Object.entries(locations).forEach(([fromId, location]) => {
-              location.exits.forEach((toId) => {
-                  // Create a sorted pair to avoid duplicates (A-B same as B-A)
-                  const pair = [fromId, toId].sort();
-                  const key = `${pair[0]}-${pair[1]}`;
-                  connections.add(key);
-              });
-          });
-  
-          return Array.from(connections).map(key => {
-              const [a, b] = key.split('-');
-              return [a, b];
-          }); */
+        Object.entries(locations).forEach(([fromId, _]) => {
+            Object.entries(locations).forEach(([toId, _]) => {
+                // Create a sorted pair to avoid duplicates (A-B same as B-A)
+                if (fromId !== toId) {
+                    const pair = [fromId, toId].sort();
+                    const key = `${pair[0]}-${pair[1]}`;
+                    connections.add(key);
+                }
+            });
+        });
+
+        return Array.from(connections).map(key => {
+            const [a, b] = key.split('-');
+            return [a, b];
+        });
     };
 
+
+
     const connections = getUniqueConnections();
+    console.log(connections);
 
     return (
         <svg

@@ -1,6 +1,5 @@
 import type { Player, LocationState } from '@openquests/schema';
 import { usePendingAction } from '../hooks/usePendingAction';
-import MoveAction from './MoveAction';
 
 interface PlayerPanelProps {
     player: Player;
@@ -80,7 +79,7 @@ export default function PlayerPanel({ player, location, allLocations, currentDay
 
             {/* Actions Section */}
             <div className="mt-6 pt-4 border-t border-amber-300">
-                <h3 className="text-lg font-semibold text-amber-900 mb-3">Actions</h3>
+                <h3 className="text-lg font-semibold text-amber-900 mb-3" onClick={() => handleActionSubmit('MOVE blue_base')}>Actions</h3>
                 {/* <MoveAction
                     player={player}
                     locations={allLocations}
