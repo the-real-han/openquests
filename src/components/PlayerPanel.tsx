@@ -5,12 +5,11 @@ import MoveAction from './MoveAction';
 interface PlayerPanelProps {
     player: Player;
     location: LocationState;
-    exits: string[];
     allLocations: Record<string, LocationState>;
     currentDay: number;
 }
 
-export default function PlayerPanel({ player, location, exits, allLocations, currentDay }: PlayerPanelProps) {
+export default function PlayerPanel({ player, location, allLocations, currentDay }: PlayerPanelProps) {
     const { pendingAction, setPendingAction } = usePendingAction(player.playerId, currentDay);
 
     const handleActionSubmit = (action: string) => {
@@ -82,12 +81,11 @@ export default function PlayerPanel({ player, location, exits, allLocations, cur
             {/* Actions Section */}
             <div className="mt-6 pt-4 border-t border-amber-300">
                 <h3 className="text-lg font-semibold text-amber-900 mb-3">Actions</h3>
-                <MoveAction
+                {/* <MoveAction
                     player={player}
-                    exits={exits}
                     locations={allLocations}
                     onActionSubmit={handleActionSubmit}
-                />
+                /> */}
             </div>
         </section>
     );

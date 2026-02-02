@@ -15,21 +15,22 @@ const LOCATION_POSITIONS: Record<string, { x: number; y: number }> = {
 export default function WorldMap({ locations, locationLogs, onLocationClick }: WorldMapProps) {
     // Extract unique connections from exits to avoid duplicate lines
     const getUniqueConnections = (): Array<[string, string]> => {
-        const connections = new Set<string>();
+        return [];
+        /*   const connections = new Set<string>();
 
         Object.entries(locations).forEach(([fromId, location]) => {
-            location.exits.forEach((toId) => {
-                // Create a sorted pair to avoid duplicates (A-B same as B-A)
-                const pair = [fromId, toId].sort();
-                const key = `${pair[0]}-${pair[1]}`;
-                connections.add(key);
-            });
-        });
-
-        return Array.from(connections).map(key => {
-            const [a, b] = key.split('-');
-            return [a, b];
-        });
+              location.exits.forEach((toId) => {
+                  // Create a sorted pair to avoid duplicates (A-B same as B-A)
+                  const pair = [fromId, toId].sort();
+                  const key = `${pair[0]}-${pair[1]}`;
+                  connections.add(key);
+              });
+          });
+  
+          return Array.from(connections).map(key => {
+              const [a, b] = key.split('-');
+              return [a, b];
+          }); */
     };
 
     const connections = getUniqueConnections();

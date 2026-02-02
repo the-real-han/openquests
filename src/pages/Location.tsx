@@ -10,7 +10,7 @@ export default function Location() {
     const { id } = useParams<{ id: string }>();
     const { data, loading, error } = useGameState();
     const { isLoggedIn } = useAuth();
-    const currentPlayer = useCurrentPlayer();
+    const { currentPlayer } = useCurrentPlayer();
 
     if (loading) {
         return (
@@ -47,7 +47,7 @@ export default function Location() {
     }
 
     // Check if player should see their panel here
-    const showPlayerPanel = isLoggedIn && currentPlayer && currentPlayer.location === id;
+    const showPlayerPanel = isLoggedIn && currentPlayer && currentPlayer.character.clanId === location.clanId;
 
     return (
         <div className="min-h-screen bg-[#47aba9] text-white bg-[url('assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
@@ -63,7 +63,6 @@ export default function Location() {
                     <PlayerPanel
                         player={currentPlayer}
                         location={location as LocationState}
-                        exits={location.exits}
                         allLocations={data.locations}
                         currentDay={data.worldLog.day}
                     />
@@ -78,28 +77,6 @@ export default function Location() {
                         </p>
                     </section>
                 )}
-
-                <section>
-                    <h3 className="text-lg font-semibold mb-2">Exits</h3>
-                    {location.exits.length > 0 ? (
-                        <div className="flex gap-2 flex-wrap">
-                            {location.exits.map((exitId) => {
-                                const exitLocation = data.locations[exitId];
-                                return exitLocation ? (
-                                    <Link
-                                        key={exitId}
-                                        to={`/location/${exitId}`}
-                                        className="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded transition"
-                                    >
-                                        {exitLocation.name}
-                                    </Link>
-                                ) : null;
-                            })}
-                        </div>
-                    ) : (
-                        <p className="text-slate-400">This location has no exits.</p>
-                    )}
-                </section>
             </main>
         </div>
     );

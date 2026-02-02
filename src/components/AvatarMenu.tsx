@@ -4,7 +4,7 @@ import StartAdventureDialog from './StartAdventureDialog';
 
 export default function AvatarMenu() {
     const { user, logout } = useAuth();
-    const currentPlayer = useCurrentPlayer();
+    const { currentPlayer, location } = useCurrentPlayer();
     const [isOpen, setIsOpen] = useState(false);
     const [showStartAdventure, setShowStartAdventure] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -28,7 +28,7 @@ export default function AvatarMenu() {
 
     const handleGoToCharacter = () => {
         if (currentPlayer) {
-            window.location.hash = `#/location/${currentPlayer.location}`;
+            window.location.hash = `#/location/${location}`;
         }
         setIsOpen(false);
     };
@@ -70,7 +70,7 @@ export default function AvatarMenu() {
                                     onClick={handleGoToCharacter}
                                     className="w-full text-left px-4 py-2 text-sm hover:bg-slate-700 transition"
                                 >
-                                    🏰 Go to my character
+                                    🏰 My clan
                                 </button>
                                 <hr className="border-slate-700 my-1" />
                             </>

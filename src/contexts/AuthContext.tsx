@@ -117,19 +117,22 @@ export function useAuth() {
 }
 
 // Hook to get current player from gamestate
-export function useCurrentPlayer(): Player | null {
+export function useCurrentPlayer(): { currentPlayer: Player | null, location: string } {
     const { isLoggedIn, user } = useAuth();
     const { data } = useGameState();
 
     if (!isLoggedIn || !user || !data) {
-        return null;
+        return { currentPlayer: null, location: "" };
     }
 
     // Find player by matching github.username
     const playerEntry = Object.values(data.players).find(
         (player) => player.github.username === user.username
     );
+    if (!playerEntry) {
+        return { currentPlayer: null, location: "" };
+    }
 
-    return playerEntry || null;
+    return { currentPlayer: playerEntry, location: data.locations[playerEntry.character.clanId].name };
 }
 
