@@ -51,8 +51,8 @@ export default function PlayerPanel({ player, location, allLocations, currentDay
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <span className="font-semibold">Clan:</span>
-                    <span>{player.character.clanId}</span>
+                    <span className="font-semibold">Home:</span>
+                    <span>{location.name}</span>
                 </div>
 
                 <div className="flex items-center gap-2">
