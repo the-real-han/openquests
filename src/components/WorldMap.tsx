@@ -8,12 +8,12 @@ interface WorldMapProps {
 
 // Hardcoded positions for each location (static geography)
 const LOCATION_POSITIONS: Record<string, { x: number; y: number }> = {
-    pinewood_grove: { x: 250, y: 200 },
-    goldforge_mine: { x: 550, y: 200 },
-    harmony_fields: { x: 250, y: 300 },
-    golden_plains: { x: 550, y: 300 },
-    twilight_pits: { x: 250, y: 250 },
-    wildrift: { x: 450, y: 200 }
+    'pinewood-grove': { x: 250, y: 200 },
+    'goldforge-mine': { x: 550, y: 200 },
+    'harmony-fields': { x: 250, y: 300 },
+    'golden-plains': { x: 550, y: 300 },
+    'twilight-pits': { x: 250, y: 250 },
+    'wildrift': { x: 450, y: 200 }
 };
 
 export default function WorldMap({ locations, locationLogs, onLocationClick }: WorldMapProps) {
