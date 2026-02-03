@@ -54,13 +54,6 @@ export default function PlayerPanel({ player, location, allLocations, currentDay
                     <span className="font-semibold">Home:</span>
                     <span>{location.name}</span>
                 </div>
-
-                <div className="flex items-center gap-2">
-                    <span className="font-semibold">Status:</span>
-                    <span className="text-green-700 font-medium">
-                        {player.status.alive ? '✓ Healthy' : '💀 Deceased'}
-                    </span>
-                </div>
             </div>
 
             {/* Pending Action Display */}
