@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'm6x11';
+    src: url('/fonts/m6x11.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}

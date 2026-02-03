@@ -44,7 +44,7 @@ export default function Home() {
         <div className="min-h-screen bg-[#47aba9] text-white bg-[url('/assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
             <Header />
 
-            <main className="container mx-auto max-w-4xl p-4">
+            <main className="container mx-auto max-w-3xl p-4">
                 <section className="bg-amber-50 text-amber-900 p-6 rounded-lg my-6">
                     <h2 className="text-xl font-serif mb-3 text-center">📜 World Log</h2>
                     <div className="text-left">

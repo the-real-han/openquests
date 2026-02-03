@@ -53,9 +53,12 @@ export default function Location() {
         <div className="min-h-screen bg-[#47aba9] text-white bg-[url('/assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
             <Header />
 
-            <main className="container mx-auto max-w-4xl p-4">
-                <h1 className="text-3xl font-bold mb-2">{location.name}</h1>
-                <p className="text-slate-400 italic mb-6">{location.description}</p>
+            <main className="container mx-auto max-w-3xl p-4">
+                <img src={`/assets/Log/${location.id}-log.png`} alt="OpenQuests Log" className="w-full" />
+                <div className="pt-5 mx-auto flex justify-center bg-[url('/assets/Log/logMid.png')] bg-position-[center_top] bg-size-[100%_auto]">
+                    <p className="w-[60%] text-center font-pixel">{locationLog ? locationLog.summary : location.description}</p>
+                </div>
+                <img src={`/assets/Log/logBot.png`} alt="OpenQuests Log" className="w-full" />
 
                 <TiledMapViewer jsonPath="map/village.json" />
 

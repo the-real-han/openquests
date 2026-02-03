@@ -51,7 +51,7 @@ export default function AvatarMenu() {
             <div className="relative" ref={menuRef}>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center gap-2 hover:opacity-80 transition"
+                    className="hover:bg-[#24292F] bg-[#24292F]/90 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-3 border border-slate-700 hover:cursor-pointer"
                     aria-label="User menu"
                 >
                     <img
@@ -61,6 +61,7 @@ export default function AvatarMenu() {
                     />
                     <span className="text-sm hidden sm:inline">{user.username}</span>
                 </button>
+
 
                 {isOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg border border-slate-700 py-1 z-50">
