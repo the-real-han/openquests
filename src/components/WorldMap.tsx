@@ -41,7 +41,6 @@ export default function WorldMap({ locations, locationLogs, onLocationClick }: W
 
 
     const connections = getUniqueConnections();
-    console.log(connections);
 
     return (
         <svg

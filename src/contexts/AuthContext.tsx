@@ -134,6 +134,6 @@ export function useCurrentPlayer(): { currentPlayer: Player | null, location: st
     }
 
     const location = Object.values(data.locations).find((location) => location.clanId === playerEntry.character.clanId);
-    return { currentPlayer: playerEntry, location: location?.name || "" };
+    return { currentPlayer: playerEntry, location: location?.id || "" };
 }
 

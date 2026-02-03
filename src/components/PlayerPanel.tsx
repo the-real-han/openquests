@@ -40,7 +40,7 @@ export default function PlayerPanel({ player, location, allLocations, currentDay
             <div className="space-y-3 text-amber-900">
                 <div className="flex items-center gap-2">
                     <span className="font-semibold">Adventurer:</span>
-                    <span className="text-lg">{player.github.username}</span>
+                    <span className="text-lg">{player.character.name}</span>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -51,8 +51,8 @@ export default function PlayerPanel({ player, location, allLocations, currentDay
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <span className="font-semibold">Current Location:</span>
-                    <span>{location.name}</span>
+                    <span className="font-semibold">Clan:</span>
+                    <span>{player.character.clanId}</span>
                 </div>
 
                 <div className="flex items-center gap-2">
