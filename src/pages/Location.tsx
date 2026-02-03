@@ -55,8 +55,8 @@ export default function Location() {
 
             <main className="container mx-auto max-w-3xl p-4">
                 <img src={`/assets/Log/${location.id}-log.png`} alt="OpenQuests Log" className="w-full" />
-                <div className="pt-5 mx-auto flex justify-center bg-[url('/assets/Log/logMid.png')] bg-position-[center_top] bg-size-[100%_auto]">
-                    <p className="w-[60%] text-center font-pixel">{locationLog ? locationLog.summary : location.description}</p>
+                <div className="pt-8 mx-auto flex justify-center bg-[url('/assets/Log/logMid.png')] bg-position-[center_top] bg-size-[100%_100%]">
+                    <p className="w-[55%] text-center font-pixel text-2xl leading-none text-[#C77A3D]">{locationLog ? locationLog.summary : location.description}</p>
                 </div>
                 <img src={`/assets/Log/logBot.png`} alt="OpenQuests Log" className="w-full" />
 
