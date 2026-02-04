@@ -54,12 +54,13 @@ export default function Location() {
             <Header />
 
             <main className="container mx-auto max-w-3xl p-4">
-                <img src={`/assets/Log/${location.id}-log.png`} alt="OpenQuests Log" className="w-full" />
-                <div className="pt-8 mx-auto flex justify-center bg-[url('/assets/Log/logMid.png')] bg-position-[center_top] bg-size-[100%_100%]">
-                    <p className="w-[55%] text-center font-pixel text-2xl leading-none text-[#C77A3D]">{locationLog ? locationLog.summary : location.description}</p>
+                <div className="md:w-[70%] w-[90%] mx-auto">
+                    <img src={`/assets/Log/log-${location.id}.png`} alt="OpenQuests Log" className="w-full" />
+                    <div className="px-8 flex justify-center bg-[url('/assets/Log/log-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
+                        <p className="text-center font-pixel md:text-xl leading-none text-amber-900">{locationLog ? locationLog.summary : location.description}</p>
+                    </div>
+                    <img src={`/assets/Log/log-bot.png`} alt="OpenQuests Log" className="w-full" />
                 </div>
-                <img src={`/assets/Log/logBot.png`} alt="OpenQuests Log" className="w-full" />
-
                 <TiledMapViewer jsonPath="map/village.json" />
 
                 {showPlayerPanel && currentPlayer && (
