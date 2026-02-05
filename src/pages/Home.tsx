@@ -45,12 +45,13 @@ export default function Home() {
             <Header />
 
             <main className="container mx-auto max-w-3xl p-4">
-                <section className="bg-amber-50 text-amber-900 p-6 rounded-lg my-6">
-                    <h2 className="text-xl font-serif mb-3 text-center">📜 World Log</h2>
-                    <div className="text-left">
-                        {formatWorldLog(data.worldLog.summary)}
+                <div className="md:w-[70%] w-[90%] mx-auto">
+                    <img src={`/assets/Log/log-world.png`} alt="OpenQuests Log" className="w-full" />
+                    <div className="px-8 md:px-12 flex justify-center bg-[url('/assets/Log/log-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
+                        <p className="text-center font-pixel md:text-xl leading-none text-amber-900">{formatWorldLog(data.worldLog.summary)}</p>
                     </div>
-                </section>
+                    <img src={`/assets/Log/log-bot.png`} alt="OpenQuests Log" className="w-full" />
+                </div>
 
                 <section className="my-6">
                     <h3 className="text-xl mb-4 text-center">The Known World</h3>

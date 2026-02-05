@@ -10,7 +10,7 @@ export default function Header() {
         <header className="bg-transparent p-4">
             <div className="container mx-auto max-w-5xl flex justify-between items-center">
                 <Link to="/" className="text-2xl font-bold hover:text-blue-400 transition-colors">
-                    <img src="/logo.png" alt="OpenQuests Logo" className="h-14" />
+                    <img src="/logo.png" alt="OpenQuests Logo" className="md:h-14 h-10" />
                 </Link>
                 <div className="flex items-center gap-4">
                     {isLoggedIn ? (

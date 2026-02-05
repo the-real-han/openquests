@@ -11,3 +11,12 @@
     font-style: normal;
     font-display: swap;
 }
+
+html {
+    cursor: url('/assets/UI Elements/UI Elements/Cursors/Cursor_01.png') 16 16, auto !important;
+}
+
+a:hover,
+button:hover {
+    cursor: url('/assets/UI Elements/UI Elements/Cursors/Cursor_02.png') 16 16, pointer !important;
+}
