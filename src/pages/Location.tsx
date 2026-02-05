@@ -85,7 +85,7 @@ export default function Location() {
 
             <main className="container mx-auto max-w-3xl p-4">
                 <div className="md:w-[70%] w-[90%] mx-auto relative">
-                    <Link to="/"><img src={`/assets/UI Elements/UI Elements/Icons/Icon_08.png`} alt="OpenQuests Log" className="absolute top-2 right-6 h-10 w-15 scale-x-[-1]" /></Link>
+                    <Link to="/"><img src={`/assets/UI Elements/UI Elements/Icons/Icon_08.png`} alt="OpenQuests Log" className="absolute md:top-2 md:right-6 right-4 md:h-10 md:w-15 h-7 w-10 scale-x-[-1]" /></Link>
                     <img src={`/assets/Log/log-${location.id}.png`} alt="OpenQuests Log" className="w-full" />
                     <div className="px-8 md:px-12 flex justify-center bg-[url('/assets/Log/log-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
                         <p className="text-center font-pixel md:text-xl leading-none text-amber-900">{locationLog ? locationLog.summary : location.description}</p>
@@ -99,19 +99,19 @@ export default function Location() {
                                 <p className="font-pixel md:text-xl leading-none text-white pt-1">{clan?.name}</p>
                                 <div className="flex items-center justify-between h-[100%] w-[15%]">
                                     <img src={`/assets/UI Elements/UI Elements/Human Avatars/Avatars_25.png`} alt="OpenQuests Resources" className="h-[70%]" />
-                                    <p className="font-pixel md:text-lg text-md leading-none text-white pt-1">{Object.values(data.players).filter(player => player.character.clanId === location.clanId).length}</p>
+                                    <p className="font-pixel md:text-lg text-xs leading-none text-white pt-1">{Object.values(data.players).filter(player => player.character.clanId === location.clanId).length}</p>
                                 </div>
                                 <div className="flex items-center justify-between h-[100%] w-[15%]">
                                     <img src={`/assets/UI Elements/UI Elements/Icons/Icon_03.png`} alt="OpenQuests Resources" className="h-[50%]" />
-                                    <p className="font-pixel md:text-lg text-md leading-none text-white pt-1">{formatNumberShorthand(clan?.gold ?? 0)}</p>
+                                    <p className="font-pixel md:text-lg text-xs leading-none text-white pt-1">{formatNumberShorthand(clan?.gold ?? 0)}</p>
                                 </div>
                                 <div className="flex items-center justify-between h-[100%] w-[15%]">
                                     <img src={`/assets/UI Elements/UI Elements/Icons/Icon_04.png`} alt="OpenQuests Resources" className="h-[50%]" />
-                                    <p className="font-pixel md:text-lg text-md leading-none text-white pt-1">{formatNumberShorthand(clan?.food ?? 0)}</p>
+                                    <p className="font-pixel md:text-lg text-xs leading-none text-white pt-1">{formatNumberShorthand(clan?.food ?? 0)}</p>
                                 </div>
                                 <div className="flex items-center justify-between h-[100%] w-[15%]">
                                     <img src={`/assets/UI Elements/UI Elements/Icons/Icon_02.png`} alt="OpenQuests Resources" className="h-[50%]" />
-                                    <p className="font-pixel md:text-lg text-md leading-none text-white pt-1">{formatNumberShorthand(clan?.wood ?? 0)}</p>
+                                    <p className="font-pixel md:text-lg text-xs leading-none text-white pt-1">{formatNumberShorthand(clan?.wood ?? 0)}</p>
                                 </div>
                             </div>
                         </div>
