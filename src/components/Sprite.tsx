@@ -1,25 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 export const Sprite = function ({
     src,
-    framesize = 192,
+    frameSize = 192,
     frames = 6,
     speed = 0.7,
     cropRatio = 0.7,
 }: {
     src: string,
-    framesize?: number,
+    frameSize?: number,
     frames?: number,
     speed?: number,
     cropRatio?: number
 }) {
-    const frameW = framesize;
-    const frameH = framesize;
+    const frameW = frameSize;
+    const frameH = frameSize;
     const cropW = cropRatio;
     const cropH = cropRatio;
     const croppedAspectRatio = (frameW * cropW) / (frameH * cropH);
     const fullAspectRatio = frameW / frameH;
-    const animName = `sprite-anim-${Date.now()}`;
+
+    // Use useMemo to create a stable animation name that doesn't change on re-renders
+    const animName = useMemo(() => `sprite-anim-${Math.random().toString(36).substr(2, 9)}`, []);
+
     const ref = useRef<HTMLDivElement>(null);
     const [containerHeight, setContainerHeight] = useState(0);
 
@@ -28,12 +31,16 @@ export const Sprite = function ({
 
         const updateHeight = () => {
             if (ref.current) {
-                setContainerHeight(ref.current.offsetHeight);
+                const height = ref.current.offsetHeight;
+                // Only update if height actually changed to avoid unnecessary re-renders
+                setContainerHeight(prev => prev !== height ? height : prev);
             }
         };
 
-        // Initial measurement
-        updateHeight();
+        // Initial measurement with requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+            updateHeight();
+        });
 
         // Use ResizeObserver for more reliable updates
         const resizeObserver = new ResizeObserver(updateHeight);
@@ -42,13 +49,9 @@ export const Sprite = function ({
         // Fallback to window resize
         window.addEventListener('resize', updateHeight);
 
-        // Also trigger after a short delay to catch late renders
-        const timeoutId = setTimeout(updateHeight, 100);
-
         return () => {
             resizeObserver.disconnect();
             window.removeEventListener('resize', updateHeight);
-            clearTimeout(timeoutId);
         };
     }, []);
 
@@ -70,6 +73,7 @@ export const Sprite = function ({
                 <>
                     <style>{`
                         @keyframes ${animName} {
+                            from { background-position: 0 center; }
                             to { background-position: -${totalWidth}px center; }
                         }
                     `}</style>
@@ -84,6 +88,7 @@ export const Sprite = function ({
                             height: innerHeight,
                             backgroundImage: `url("${src}")`,
                             backgroundSize: `${totalWidth}px ${innerHeight}px`,
+                            backgroundPosition: '0 center',
                             animation: `${animName} ${speed}s steps(${frames}) infinite`
                         }}
                     />
