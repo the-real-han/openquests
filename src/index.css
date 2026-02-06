@@ -20,3 +20,9 @@ a:hover,
 button:hover {
     cursor: url('/assets/UI Elements/UI Elements/Cursors/Cursor_02.png') 16 16, pointer !important;
 }
+
+.sprite-anim {
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-position: 0 center;
+}
