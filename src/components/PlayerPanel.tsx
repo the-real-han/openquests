@@ -142,7 +142,7 @@ export default function PlayerPanel({ player, location, locations, currentDay }:
                         {getPendingActionDisplay() && (
                             <p className="font-pixel text-center md:text-xl leading-[1.5] text-gray-400">⏳ {getPendingActionDisplay()}</p>
                         )}
-                        <p className="font-pixel md:text-xl leading-none text-white">DAY {log?.day}: <span className="text-white">{log?.action?.type} [{locations[log?.action?.target ?? ""]?.name}]</span></p>
+                        <p className="font-pixel md:text-xl leading-none text-white">DAY {log?.day}: {log?.action ? <span className="text-white">{log.action.type} [{locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
                         <p className="font-pixel md:text-xl leading-none text-white" style={{ whiteSpace: 'pre-line' }}>{log?.summary}</p>
                     </div>
                     <img src={`/assets/Log/log-player-bot.png`} alt="OpenQuests Log" className="w-full" />
