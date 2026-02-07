@@ -1,6 +1,5 @@
 import type { Player, LocationState } from '@openquests/schema';
 import { usePendingAction } from '../hooks/usePendingAction';
-import { Sprite } from './Sprite';
 import ActionButton from './ActionButton';
 import { useState } from 'react';
 

@@ -57,7 +57,6 @@ export default function Home() {
                     <h3 className="text-xl mb-4 text-center">The Known World</h3>
                     <WorldMap
                         locations={data.locations}
-                        locationLogs={{}}
                         onLocationClick={handleLocationClick}
                     />
                 </section>

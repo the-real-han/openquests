@@ -1,8 +1,7 @@
-import type { LocationState, LocationLog } from '@openquests/schema';
+import type { LocationState } from '@openquests/schema';
 
 interface WorldMapProps {
     locations: Record<string, LocationState>;
-    locationLogs: Record<string, LocationLog>;
     onLocationClick: (locationId: string) => void;
 }
 
@@ -16,7 +15,7 @@ const LOCATION_POSITIONS: Record<string, { x: number; y: number }> = {
     'wildrift': { x: 450, y: 200 }
 };
 
-export default function WorldMap({ locations, locationLogs, onLocationClick }: WorldMapProps) {
+export default function WorldMap({ locations, onLocationClick }: WorldMapProps) {
     // Extract unique connections from exits to avoid duplicate lines
     const getUniqueConnections = (): Array<[string, string]> => {
         const connections = new Set<string>();
@@ -84,8 +83,7 @@ export default function WorldMap({ locations, locationLogs, onLocationClick }: W
             <g className="markers">
                 {Object.entries(locations).map(([locationId, location]) => {
                     const pos = LOCATION_POSITIONS[locationId];
-                    const log = locationLogs[locationId];
-                    const population = log?.population ?? 0;
+                    const population = 0;
 
                     if (!pos) return null;
 

@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useGameState } from '../hooks/useGameState';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
-import type { ActionType, LocationState, PlayerClass } from '@openquests/schema';
+import type { LocationState } from '@openquests/schema';
 import PlayerPanel from '../components/PlayerPanel';
 import Header from '../components/Header';
 import { TiledMapViewer } from '../components/Tilemap';
@@ -11,7 +11,8 @@ export default function Location() {
     const { id } = useParams<{ id: string }>();
     const { data, loading, error } = useGameState();
     const { isLoggedIn } = useAuth();
-    const currentPlayer = {
+    const { currentPlayer } = useCurrentPlayer();
+    /* {
         playerId: 1,
         github: {
             username: "Player1",
@@ -66,7 +67,7 @@ export default function Location() {
             attackLoseStreak: 0,
             attackedCount: 0,
         }
-    } //useCurrentPlayer();
+    }  */
 
     const formatNumberShorthand = (num: number) => {
         if (num < 1000) {
@@ -132,7 +133,7 @@ export default function Location() {
     }
 
     // Check if player should see their panel here
-    const showPlayerPanel = true; //isLoggedIn && currentPlayer;
+    const showPlayerPanel = isLoggedIn && currentPlayer; //true
     const clan = data.clans[location.clanId];
     const locationLog = location.history.at(-1);
 
