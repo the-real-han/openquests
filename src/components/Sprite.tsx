@@ -6,12 +6,14 @@ export const Sprite = function ({
     frames = 6,
     speed = 0.7,
     cropRatio = 0.7,
+    onClick
 }: {
     src: string,
     frameSize?: number,
     frames?: number,
     speed?: number,
-    cropRatio?: number
+    cropRatio?: number,
+    onClick: () => void,
 }) {
     const frameW = frameSize;
     const frameH = frameSize;
@@ -61,7 +63,7 @@ export const Sprite = function ({
     const totalWidth = innerWidth * frames;
 
     return (
-        <div
+        <div className={`action`} onClick={onClick}
             ref={ref}
             style={{
                 height: '100%',
@@ -78,7 +80,7 @@ export const Sprite = function ({
                         }
                     `}</style>
                     <div
-                        className="sprite-anim"
+                        className="sprite-anim pointer-events-none"
                         style={{
                             position: 'absolute',
                             top: '50%',

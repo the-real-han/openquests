@@ -17,8 +17,13 @@ html {
 }
 
 a:hover,
-button:hover {
+button:hover,
+.action:hover {
     cursor: url('/assets/UI Elements/UI Elements/Cursors/Cursor_02.png') 16 16, pointer !important;
+}
+
+.blocking-cursor {
+    cursor: url('/assets/UI Elements/UI Elements/Cursors/Cursor_03.png') 16 16, not-allowed !important;
 }
 
 .sprite-anim {

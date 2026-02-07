@@ -48,7 +48,7 @@ export default function Home() {
                 <div className="md:w-[70%] w-[90%] mx-auto">
                     <img src={`/assets/Log/log-world.png`} alt="OpenQuests Log" className="w-full" />
                     <div className="px-8 md:px-12 flex justify-center bg-[url('/assets/Log/log-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
-                        <p className="text-center font-pixel md:text-xl leading-none text-amber-900">{formatWorldLog(data.worldLog.summary)}</p>
+                        <p className="text-center font-pixel md:text-xl leading-none text-amber-900">{formatWorldLog(data.history.at(-1)?.summary ?? "")}</p>
                     </div>
                     <img src={`/assets/Log/log-bot.png`} alt="OpenQuests Log" className="w-full" />
                 </div>
@@ -57,7 +57,7 @@ export default function Home() {
                     <h3 className="text-xl mb-4 text-center">The Known World</h3>
                     <WorldMap
                         locations={data.locations}
-                        locationLogs={data.locationLogs}
+                        locationLogs={{}}
                         onLocationClick={handleLocationClick}
                     />
                 </section>
