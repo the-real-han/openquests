@@ -121,6 +121,17 @@ const getAvatarOffset = (clanId: string, charClass: PlayerClass) => {
     return String(offset).padStart(2, '0');
 }
 
+const getAvatarWidth = (charClass: PlayerClass) => {
+    switch (charClass) {
+        case "Warrior":
+            return "45%";
+        default:
+            return "50%";
+    }
+}
+
+const chip = "inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-semibold tracking-wide text-white relative overflow-hidden";
+
 export default function PlayerPanel({ player, location, locations, currentDay, clan }: PlayerPanelProps) {
     const { pendingAction, setPendingAction } = usePendingAction(player.playerId, currentDay);
     const [feedback, setFeedback] = useState<string | null>(null);
@@ -142,6 +153,27 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
         return feedback || pendingAction;
     };
 
+    const sortedTitles = player.character.titles.sort((a, b) => b.rank - a.rank);
+    const topTitle = sortedTitles.at(0) ?? {
+        "id": "new_guy",
+        "title": "The Trainee",
+        "requirement": {
+            "field": "meta.gatherFoodCount",
+            "operator": ">=",
+            "value": 0
+        },
+        "bonus": {
+            "food": 0,
+            "wood": 0,
+            "gold": 0,
+            "xp": 0,
+            "fortune": 0
+        },
+        "rank": 1,
+        "color": "#006c4b"
+    };
+    const secondTitle = sortedTitles.length > 1 ? sortedTitles.at(1) : null;
+
     const log = player.history.at(-1);
     const charClass = player.character.class;
     const runPng = runPngMap[charClass as keyof typeof runPngMap];
@@ -157,22 +189,23 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                             <p className="text-center">{clan.name}</p>
                         </div>
                     </div>
-                    <div className="relative text-lg">
+                    <div className="relative">
                         <img src={`/assets/Player/info-mid.png`} alt="OpenQuests Hero Info" className="w-full h[50%]" />
-                        <div className='absolute pt-3 top-0 left-1/2 w-[40%] md:text-xl'>
-                            <p className="w-full text-center no-wrap overflow-hidden text-ellipsis">{player.character.name}</p>
-                            <div className='flex items-center justify-between'>
-                                <p>Lv. {player.character.level}</p>
-                                <div className="mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[100%_100%] w-[70%] leading-none h-[1lh] bg-no-repeat">
-                                    <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-4" style={{ width: `${Math.max(Math.floor(player.character.xp / ((player.character.level + 2) * (player.character.level + 2)) * 69), 2)}%` }} />
+                        <div className='absolute pt-3 top-0 left-1/3 w-[65%] md:pl-6 md:pr-4 pl-4 pr-3'>
+                            <p className="w-full text-center no-wrap overflow-hidden text-ellipsis md:text-2xl text-xl">{player.character.name}</p>
+                            <div className='flex items-center justify-center text-base'>
+                                <p>[Lv.{player.character.level}] EXP</p>
+                                <div className="mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[100%_100%] w-[60%] leading-none h-[1lh] bg-no-repeat">
+                                    <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-5" style={{ width: `${Math.max(Math.floor(player.character.xp / ((player.character.level + 2) * (player.character.level + 2)) * 69), 2)}%` }} />
                                 </div>
                             </div>
-                            <div>
-                                Title
+                            <div className="flex items-center justify-evenly text-base pt-1">
+                                <span className={`${chip} shadow-md shadow-black/50 ring-1`} style={{ backgroundColor: topTitle.color, '--tw-ring-color': topTitle.color + '55' } as React.CSSProperties}>{topTitle.title}</span>
+                                {secondTitle && <span className={`${chip} shadow-md shadow-black/50 ring-1`} style={{ backgroundColor: secondTitle.color, '--tw-ring-color': secondTitle.color + '55' } as React.CSSProperties}>{secondTitle.title}</span>}
                             </div>
                         </div>
                     </div>
-                    <img src={`/assets/UI Elements/UI Elements/Human Avatars/Avatars_${getAvatarOffset(clan.id, charClass)}.png`} alt="OpenQuests Hero" className="w-[45%] absolute right-1/2 top-0" />
+                    <img src={`/assets/UI Elements/UI Elements/Human Avatars/Avatars_${getAvatarOffset(clan.id, charClass)}.png`} alt="OpenQuests Hero" className="absolute right-7/12 top-0" style={{ width: getAvatarWidth(charClass) }} />
                 </div>
                 <img src={`/assets/Player/backstory-top.png`} alt="OpenQuests Hero Info" className="w-full" />
                 <div className="px-8 bg-[url('/assets/Player/backstory-mid.png')] bg-position-[center_top] bg-size-[100%_auto] bg-repeat-y">
@@ -214,6 +247,6 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                     <img src={`/assets/Log/log-player-bot.png`} alt="OpenQuests Log" className="w-full" />
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
