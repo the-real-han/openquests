@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createCharacter } from '../config/auth';
 import { AUTH_TOKEN_KEY } from '../config/auth';
+import { PLAYER_BACKSTORY_MAX_LENGTH, PLAYER_NAME_MAX_LENGTH } from '@openquests/schema';
 
 interface StartAdventureDialogProps {
     onClose: () => void;
@@ -83,7 +84,7 @@ export default function StartAdventureDialog({ onClose, onSuccess }: StartAdvent
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1">
-                            Character Name
+                            Character Name <span className="text-slate-500 text-xs">(max {PLAYER_NAME_MAX_LENGTH} chars)</span>
                         </label>
                         <input
                             type="text"
@@ -93,7 +94,7 @@ export default function StartAdventureDialog({ onClose, onSuccess }: StartAdvent
                             className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                             placeholder="Enter your hero's name"
                             required
-                            maxLength={32}
+                            maxLength={PLAYER_NAME_MAX_LENGTH}
                         />
                     </div>
 
@@ -117,7 +118,7 @@ export default function StartAdventureDialog({ onClose, onSuccess }: StartAdvent
 
                     <div>
                         <label htmlFor="backstory" className="block text-sm font-medium text-slate-300 mb-1">
-                            Backstory <span className="text-slate-500 text-xs">(Optional)</span>
+                            Backstory <span className="text-slate-500 text-xs">(Optional, max {PLAYER_BACKSTORY_MAX_LENGTH} chars)</span>
                         </label>
                         <textarea
                             id="backstory"
@@ -125,7 +126,7 @@ export default function StartAdventureDialog({ onClose, onSuccess }: StartAdvent
                             onChange={(e) => setBackstory(e.target.value)}
                             className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all h-24 resize-none"
                             placeholder="Tell us about your past..."
-                            maxLength={500}
+                            maxLength={PLAYER_BACKSTORY_MAX_LENGTH}
                         />
                     </div>
 
