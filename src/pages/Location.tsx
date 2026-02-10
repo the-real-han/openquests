@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useGameState } from '../hooks/useGameState';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
-import type { ActionType, LocationState, PlayerClass } from '@openquests/schema';
+import type { LocationState } from '@openquests/schema';
 import PlayerPanel from '../components/PlayerPanel';
 import Header from '../components/Header';
 import { TiledMapViewer } from '../components/Tilemap';
