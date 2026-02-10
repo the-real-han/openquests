@@ -1,4 +1,4 @@
-import type { Player, LocationState, Clan } from '@openquests/schema';
+import type { Player, LocationState, Clan, PlayerClass } from '@openquests/schema';
 import { usePendingAction } from '../hooks/usePendingAction';
 import ActionButton from './ActionButton';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ interface PlayerPanelProps {
 }
 
 const classNormalizer = (className: string) => {
-    if (className === "Advanturer") {
+    if (className === "Adventurer") {
         return "Pawn";
     }
     return className;
@@ -25,7 +25,7 @@ const attackPngMap = {
         size: 192,
         crop: .7
     },
-    "Advanturer": {
+    "Adventurer": {
         name: "Pawn_Interact Knife.png",
         frames: 4,
         size: 192,
@@ -58,7 +58,7 @@ const runPngMap = {
         size: 192,
         crop: .7
     },
-    "Advanturer": {
+    "Adventurer": {
         name: "Pawn_Run.png",
         frames: 6,
         size: 192,
@@ -82,6 +82,43 @@ const runPngMap = {
         size: 192,
         crop: .7
     }
+}
+
+const getAvatarOffset = (clanId: string, charClass: PlayerClass) => {
+    let offset = 1;
+    switch (clanId) {
+        case "emberwatch":
+            offset = 6;
+            break;
+        case "sunherd":
+            offset = 11;
+            break;
+        case "prismveil":
+            offset = 16;
+            break;
+        case "shardveil":
+            offset = 21;
+            break;
+        default:
+            break;
+    }
+    switch (charClass) {
+        case "Lancer":
+            offset += 1;
+            break;
+        case "Archer":
+            offset += 2;
+            break;
+        case "Monk":
+            offset += 3;
+            break;
+        case "Adventurer":
+            offset += 4;
+            break;
+        default:
+            break;
+    }
+    return String(offset).padStart(2, '0');
 }
 
 export default function PlayerPanel({ player, location, locations, currentDay, clan }: PlayerPanelProps) {
@@ -115,7 +152,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
             <div>
                 <div className="relative">
                     <div className="relative">
-                        <img src={`/assets/Player/info-top-black.png`} alt="OpenQuests Hero Info" className="w-full" />
+                        <img src={`/assets/Player/info-top-${clan.id}.png`} alt="OpenQuests Hero Info" className="w-full" />
                         <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 text-white w-[42%]">
                             <p className="text-center">{clan.name}</p>
                         </div>
@@ -135,7 +172,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                             </div>
                         </div>
                     </div>
-                    <img src={`/assets/UI Elements/UI Elements/Human Avatars/Avatars_01.png`} alt="OpenQuests Hero" className="w-[45%] absolute right-1/2 top-0" />
+                    <img src={`/assets/UI Elements/UI Elements/Human Avatars/Avatars_${getAvatarOffset(clan.id, charClass)}.png`} alt="OpenQuests Hero" className="w-[45%] absolute right-1/2 top-0" />
                 </div>
                 <img src={`/assets/Player/backstory-top.png`} alt="OpenQuests Hero Info" className="w-full" />
                 <div className="px-8 bg-[url('/assets/Player/backstory-mid.png')] bg-position-[center_top] bg-size-[100%_auto] bg-repeat-y">
