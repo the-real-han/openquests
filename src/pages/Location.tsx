@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useGameState } from '../hooks/useGameState';
 import { useAuth, useCurrentPlayer } from '../contexts/AuthContext';
-import type { LocationState } from '@openquests/schema';
+import type { ActionType, LocationState, PlayerClass } from '@openquests/schema';
 import PlayerPanel from '../components/PlayerPanel';
 import Header from '../components/Header';
 import { TiledMapViewer } from '../components/Tilemap';
@@ -23,10 +23,10 @@ export default function Location() {
             clanId: "timberkeep",
             class: "Lancer" as PlayerClass,
             level: 1,
-            xp: 0,
+            xp: 9,
             name: "Player1",
             titles: ["Pioneer"],
-            backstory: "A brave adventurer seeking glory in the realm of OpenQuests."
+            backstory: "At Pinewood Grove on Day 2, The Timberkeep saw their resources increase. Their wood reserves surged, growing by 15 units. A brave adventurer seeking glory in the realm of OpenQuests."
         },
         message: "You feel ready for adventure!",
         history: [
@@ -67,7 +67,7 @@ export default function Location() {
             attackLoseStreak: 0,
             attackedCount: 0,
         }
-    }  */
+    } */
 
     const formatNumberShorthand = (num: number) => {
         if (num < 1000) {
@@ -133,7 +133,7 @@ export default function Location() {
     }
 
     // Check if player should see their panel here
-    const showPlayerPanel = isLoggedIn && currentPlayer; //true
+    const showPlayerPanel = isLoggedIn && currentPlayer;
     const clan = data.clans[location.clanId];
     const locationLog = location.history.at(-1);
 
@@ -183,6 +183,7 @@ export default function Location() {
                         player={currentPlayer}
                         location={location as LocationState}
                         locations={data.locations}
+                        clan={data.clans[currentPlayer.character.clanId]}
                         currentDay={data.day}
                     />
                 )}
