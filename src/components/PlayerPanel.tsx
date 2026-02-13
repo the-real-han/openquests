@@ -130,7 +130,7 @@ const getAvatarWidth = (charClass: PlayerClass) => {
     }
 }
 
-const chip = "inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-semibold tracking-wide text-white relative overflow-hidden";
+const chip = "inline-flex items-center pl-1 pr-1.5 py-0.5 rounded-lg text-xs font-semibold tracking-wide text-white relative overflow-hidden";
 
 export default function PlayerPanel({ player, location, locations, currentDay, clan }: PlayerPanelProps) {
     const { pendingAction, setPendingAction } = usePendingAction(player.playerId, currentDay);
@@ -156,7 +156,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
     const sortedTitles = player.character.titles.sort((a, b) => b.rank - a.rank);
     const topTitle = sortedTitles.at(0) ?? {
         "id": "new_guy",
-        "title": "The Trainee",
+        "title": "🎯 The Apprentice",
         "requirement": {
             "field": "meta.gatherFoodCount",
             "operator": ">=",
@@ -174,6 +174,21 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
     };
     const secondTitle = sortedTitles.length > 1 ? sortedTitles.at(1) : null;
 
+    const bonus = player.character.titles.reduce((acc, title) => {
+        acc.food = Math.min(acc.food + title.bonus.food, 3);
+        acc.wood = Math.min(acc.wood + title.bonus.wood, 3);
+        acc.gold = Math.min(acc.gold + title.bonus.gold, 3);
+        acc.xp = Math.min(acc.xp + title.bonus.xp, 3);
+        acc.fortune = Math.min(acc.fortune + title.bonus.fortune, 3);
+        return acc;
+    }, {
+        food: 0,
+        wood: 0,
+        gold: 0,
+        xp: 0,
+        fortune: 0
+    });
+
     const log = player.history.at(-1);
     const charClass = player.character.class;
     const runPng = runPngMap[charClass as keyof typeof runPngMap];
@@ -181,7 +196,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-2 md:gap-8 font-pixel text-amber-900">
-            <div>
+            <div className='md:w-full w-[90%] mx-auto'>
                 <div className="relative">
                     <div className="relative">
                         <img src={`/assets/Player/info-top-${clan.id}.png`} alt="OpenQuests Hero Info" className="w-full" />
@@ -192,14 +207,36 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                     <div className="relative">
                         <img src={`/assets/Player/info-mid.png`} alt="OpenQuests Hero Info" className="w-full h[50%]" />
                         <div className='absolute pt-3 top-0 left-1/3 w-[65%] md:pl-6 md:pr-4 pl-4 pr-3'>
-                            <p className="w-full text-center no-wrap overflow-hidden text-ellipsis md:text-2xl text-xl">{player.character.name}</p>
-                            <div className='flex items-center justify-center text-base'>
-                                <p>[Lv.{player.character.level}] EXP</p>
-                                <div className="mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[100%_100%] w-[60%] leading-none h-[1lh] bg-no-repeat">
-                                    <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-5" style={{ width: `${Math.max(Math.floor(player.character.xp / ((player.character.level + 2) * (player.character.level + 2)) * 69), 2)}%` }} />
-                                </div>
+                            <div className="flex items-end justify-between mx-2">
+                                <p className="w-[75%] text-left no-wrap leading-none overflow-hidden text-ellipsis md:text-2xl text-xl">{player.character.name}</p>
+                                <p className="w-[20%] text-center leading-none">Lv{player.character.level}</p>
                             </div>
-                            <div className="flex items-center justify-evenly text-base pt-1">
+                            <div className="mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[120%_100%] w-full leading-none h-[1lh] bg-no-repeat">
+                                <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-4" style={{ width: `${Math.max(Math.floor(player.character.xp / ((player.character.level + 2) * (player.character.level + 2)) * 84), 2)}%` }} />
+                            </div>
+                            <div className="flex items-center justify-evenly md:text-sm text-xs">
+                                <span className="flex items-center gap-1">
+                                    <span className="text-[#5a4630]">🍀</span>
+                                    <span className="text-[#5a4630]">+{bonus.fortune}</span>
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <span className="text-[#5a4630]">✒️</span>
+                                    <span className="text-[#5a4630]">+{bonus.xp}</span>
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <span className="text-[#5a4630]">💰</span>
+                                    <span className="text-[#5a4630]">+{bonus.gold}</span>
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <span className="text-[#5a4630]">🥩</span>
+                                    <span className="text-[#5a4630]">+{bonus.food}</span>
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <span className="text-[#5a4630]">🪵</span>
+                                    <span className="text-[#5a4630]">+{bonus.wood}</span>
+                                </span>
+                            </div>
+                            <div className="flex items-center pt-1 justify-evenly">
                                 <span className={`${chip} shadow-md shadow-black/50 ring-1`} style={{ backgroundColor: topTitle.color, '--tw-ring-color': topTitle.color + '55' } as React.CSSProperties}>{topTitle.title}</span>
                                 {secondTitle && <span className={`${chip} shadow-md shadow-black/50 ring-1`} style={{ backgroundColor: secondTitle.color, '--tw-ring-color': secondTitle.color + '55' } as React.CSSProperties}>{secondTitle.title}</span>}
                             </div>
