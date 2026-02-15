@@ -193,6 +193,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
     const charClass = player.character.class;
     const runPng = runPngMap[charClass as keyof typeof runPngMap];
     const attackPng = attackPngMap[charClass as keyof typeof attackPngMap];
+    const nextLvXp = (player.character.level + 2) * (player.character.level + 2);
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-2 md:gap-8 font-pixel text-amber-900">
@@ -208,11 +209,12 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                         <img src={`/assets/Player/info-mid.png`} alt="OpenQuests Hero Info" className="w-full h[50%]" />
                         <div className='absolute pt-3 top-0 left-1/3 w-[65%] md:pl-6 md:pr-4 pl-4 pr-3'>
                             <div className="flex items-end justify-between mx-2">
-                                <p className="w-[75%] text-left no-wrap leading-none overflow-hidden text-ellipsis md:text-2xl text-xl">{player.character.name}</p>
+                                <p className="w-[75%] text-left no-wrap leading-none overflow-hidden text-ellipsis md:text-xl text-lg">{player.character.name}</p>
                                 <p className="w-[20%] text-center leading-none">Lv{player.character.level}</p>
                             </div>
-                            <div className="mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[120%_100%] w-full leading-none h-[1lh] bg-no-repeat">
-                                <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-4" style={{ width: `${Math.max(Math.floor(player.character.xp / ((player.character.level + 2) * (player.character.level + 2)) * 84), 2)}%` }} />
+                            <div className="relative mb-1 bg-[url('/assets/Player/xp-bar.png')] bg-position-[center_center] bg-size-[120%_100%] w-full leading-none h-[1.1lh] bg-no-repeat">
+                                <img src={`/assets/Player/xp-fill.png`} alt="OpenQuests XP Bar" className="h-full ml-4" style={{ width: `${Math.max(Math.floor(player.character.xp / nextLvXp * 84), 2)}%` }} />
+                                <p className="absolute top-1/2 transform -translate-y-1/2 text-white/80 w-full text-center text-xs leading-none">EXP {player.character.xp}/{nextLvXp}</p>
                             </div>
                             <div className="flex items-center justify-evenly md:text-sm text-xs">
                                 <span className="flex items-center gap-1">
