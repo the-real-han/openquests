@@ -283,10 +283,10 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                         {logs.length < 1 ? (
                             <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 Your journey is waiting to be written...</p>
                         ) : logs.map((log, index) => (
-                            <>
-                                <p key={index} className="font-pixel md:text-xl leading-[1.5] text-white">📜 DAY {log.day}: {log.action ? <span className="text-white">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
+                            <div key={index}>
+                                <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 DAY {log.day}: {log.action ? <span className="text-white">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
                                 <p className="font-pixel md:text-xl leading-none text-white" style={{ whiteSpace: 'pre-line' }}>{log.summary}</p>
-                            </>
+                            </div>
                         ))}
                     </div>
                     <img src={`/assets/Log/log-player-bot.png`} alt="OpenQuests Log" className="w-full" />

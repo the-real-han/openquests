@@ -119,7 +119,9 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
                         for (const tile of tileset.tiles) {
                             if (tile.image) {
                                 const img = new Image();
-                                const imagePath = tile.image.replace(/^base\//, 'assets/');
+                                const imagePath = tile.image.replace(/base\//, 'assets/')
+                                    .replace(/Red Units\//, 'emberwatch/')
+                                    .replace(/Blue Units\//, 'timberkeep/');
 
                                 await new Promise<void>((resolve) => {
                                     img.onload = () => resolve();
@@ -149,8 +151,14 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
                     };
                 } else {
                     // Regular tileset with single spritesheet
+                    if (!tileset.image) {
+                        console.warn(`No image found for tileset: ${tileset.name}`);
+                        continue;
+                    }
                     const img = new Image();
-                    const imagePath = tileset.image.replace(/^base\//, 'assets/');
+                    const imagePath = tileset.image.replace(/base\//, 'assets/')
+                        .replace(/Red Units\//, 'emberwatch/')
+                        .replace(/Blue Units\//, 'timberkeep/');
 
                     await new Promise<void>((resolve) => {
                         img.onload = () => resolve();
@@ -409,6 +417,7 @@ export const TiledMapViewer: React.FC<TiledMapViewerProps> = ({ jsonPath }) => {
 
         <canvas
             ref={canvasRef}
+            className='pt-4 pb-2'
             style={{
                 width: '100%',
                 maxWidth: '100%',
