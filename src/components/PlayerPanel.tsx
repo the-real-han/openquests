@@ -189,7 +189,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
         fortune: 0
     });
 
-    const log = player.history.at(-1);
+    const logs = player.history.slice(-3);
     const charClass = player.character.class;
     const runPng = runPngMap[charClass as keyof typeof runPngMap];
     const attackPng = attackPngMap[charClass as keyof typeof attackPngMap];
@@ -276,12 +276,18 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                 </div>
                 <div>
                     <img src={`/assets/Log/log-player-top.png`} alt="OpenQuests Log" className="w-full" />
-                    <div className="px-6 md:px-8 bg-[url('/assets/Log/log-player-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
+                    <div className="px-6 bg-[url('/assets/Log/log-player-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
                         {getPendingActionDisplay() && (
                             <p className="font-pixel text-center md:text-xl leading-[1.5] text-gray-400">⏳ {getPendingActionDisplay()}</p>
                         )}
-                        <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 DAY {log?.day}: {log?.action ? <span className="text-white">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
-                        <p className="font-pixel md:text-xl leading-none text-white" style={{ whiteSpace: 'pre-line' }}>{log?.summary}</p>
+                        {logs.length < 1 ? (
+                            <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 Your journey is waiting to be written...</p>
+                        ) : logs.map((log, index) => (
+                            <>
+                                <p key={index} className="font-pixel md:text-xl leading-[1.5] text-white">📜 DAY {log.day}: {log.action ? <span className="text-white">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
+                                <p className="font-pixel md:text-xl leading-none text-white" style={{ whiteSpace: 'pre-line' }}>{log.summary}</p>
+                            </>
+                        ))}
                     </div>
                     <img src={`/assets/Log/log-player-bot.png`} alt="OpenQuests Log" className="w-full" />
                 </div>
