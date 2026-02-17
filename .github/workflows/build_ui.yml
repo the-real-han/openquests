@@ -17,6 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout private assets
+        uses: actions/checkout@v4
+        with:
+          repository: the-real-han/openquests-ui-assets
+          token: ${{ secrets.ASSETS_PAT }}
+          path: public
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20

@@ -189,7 +189,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
         fortune: 0
     });
 
-    const logs = player.history.slice(-3);
+    const logs = player.history.slice(-3).reverse();
     const charClass = player.character.class;
     const runPng = runPngMap[charClass as keyof typeof runPngMap];
     const attackPng = attackPngMap[charClass as keyof typeof attackPngMap];
