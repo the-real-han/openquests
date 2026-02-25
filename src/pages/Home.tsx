@@ -1,6 +1,7 @@
 import { useGameState } from '../hooks/useGameState';
 import WorldMap from '../components/WorldMap';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Home() {
     const { data, loading, error } = useGameState();
@@ -44,7 +45,7 @@ export default function Home() {
         <div className="min-h-screen bg-[#47aba9] text-white bg-[url('/assets/bg.png')] bg-repeat-y bg-[position:50%_0]">
             <Header />
 
-            <main className="container mx-auto max-w-3xl p-4">
+            <main className="container mx-auto max-w-4xl p-4">
                 <div className="md:w-[70%] w-[90%] mx-auto">
                     <img src={`/assets/Log/log-world.png`} alt="OpenQuests Log" className="w-full" />
                     <div className="px-8 md:px-12 flex justify-center bg-[url('/assets/Log/log-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
@@ -61,6 +62,7 @@ export default function Home() {
                     />
                 </section>
             </main>
+            <Footer />
         </div>
     );
 }

@@ -284,7 +284,7 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                             <p className="font-pixel md:text-xl leading-[1.5] text-white/80 pt-1">📜 Your journey is waiting to be written...</p>
                         ) : logs.map((log, index) => (
                             <div key={index}>
-                                <p className="font-pixel md:text-xl leading-[1.5] text-white/80 pt-2">📜 DAY {log.day}: {log.action ? <span className="text-white/80">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
+                                <p className="font-pixel md:text-xl leading-[1.5] text-white/80 pt-2">📜 DAY {log.day}: {log.action ? <span className="text-white/80">{log.action.type} {log.action.target ? "[" + (log.action.type === "GATHER" ? log.action.target : locations[log.action.target]?.name) + "]" : ""}</span> : ""}</p>
                                 <p className="font-pixel md:text-xl leading-none text-white/80" style={{ whiteSpace: 'pre-line' }}>{log.summary}</p>
                             </div>
                         ))}
