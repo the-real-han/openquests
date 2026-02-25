@@ -278,14 +278,14 @@ export default function PlayerPanel({ player, location, locations, currentDay, c
                     <img src={`/assets/Log/log-player-top.png`} alt="OpenQuests Log" className="w-full" />
                     <div className="px-6 bg-[url('/assets/Log/log-player-mid.png')] bg-position-[center_top] bg-size-[100%_100%]">
                         {getPendingActionDisplay() && (
-                            <p className="font-pixel text-center md:text-xl leading-[1.5] text-gray-400">⏳ {getPendingActionDisplay()}</p>
+                            <p className="font-pixel text-center md:text-xl leading-[1.5] text-white">⏳ {getPendingActionDisplay()}</p>
                         )}
                         {logs.length < 1 ? (
-                            <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 Your journey is waiting to be written...</p>
+                            <p className="font-pixel md:text-xl leading-[1.5] text-white/80 pt-1">📜 Your journey is waiting to be written...</p>
                         ) : logs.map((log, index) => (
                             <div key={index}>
-                                <p className="font-pixel md:text-xl leading-[1.5] text-white">📜 DAY {log.day}: {log.action ? <span className="text-white">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
-                                <p className="font-pixel md:text-xl leading-none text-white" style={{ whiteSpace: 'pre-line' }}>{log.summary}</p>
+                                <p className="font-pixel md:text-xl leading-[1.5] text-white/80 pt-2">📜 DAY {log.day}: {log.action ? <span className="text-white/80">{log.action.type} [{log.action.type === "GATHER" ? log.action.target : locations[log.action.target ?? ""]?.name}]</span> : ""}</p>
+                                <p className="font-pixel md:text-xl leading-none text-white/80" style={{ whiteSpace: 'pre-line' }}>{log.summary}</p>
                             </div>
                         ))}
                     </div>

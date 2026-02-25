@@ -1,73 +1,135 @@
-# React + TypeScript + Vite
+# ⚔️ OpenQuests
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**A Living World. One Action Per Day.**
 
-Currently, two official plugins are available:
+Gather. Explore. Attack. 
+Will your clan rise… or be erased from history?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌍 What Is OpenQuests?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+OpenQuests is a lightweight multiplayer strategy RPG where the world evolves daily.
 
-## Expanding the ESLint configuration
+Every day:
+- You choose one action.
+- The world processes all actions.
+- Bosses or random events may appear.
+- Clans rise — or fall.
+- The history is written by your decisions.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+No grinding.  
+No real-time pressure.  
+Just meaningful decisions in a living world.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛡️ Core Gameplay Loop
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Each day you may:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 🌾 **Gather** resources for your clan  
+- 🧭 **Explore** distant lands to trigger events
+- ⚔️ **Attack** monsters/bosses, or rival clans  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Your results depend on:
+- Dice rolls (with fortune modifiers)
+- Location events (weather, invasions, blessings, curses)
+- Clan bonuses
+- Team work for boss fights
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The world advances once per day.  
+Then the story unfolds.
+
+---
+
+## 🏰 Clans
+
+You will be part of a clan, you will use clan's resources and contribute your rewards to the clan.
+
+Each clan has it's own homeland, unique daily resource bonus and growing legacy:
+🔥 Emberwatch – Masters of gold and ambition (bonus gold)
+🌲 Timberkeep – Keepers of forests and timber (bonus wood)
+🌾 Sunherd – Providers of food and sustenance (bonus food)
+🟣 Prismveil – Maintainers of natural balance (balance bonus)
+⚫ Shardveil – Holders of arcane knowledge (mysterious bonus)
+
+Clans can:
+- Be defeated
+- Dominate others
+- Lose resources to invasions
+- Rise through coordinated effort
+
+---
+
+## 🐉 Boss Events
+
+When a boss appears:
+- The world is warned.
+- Players decide whether to join the assault.
+- The fight resolves the next day.
+- Victory requires class composition and minimum participation.
+- Failure still grants experience — but the boss remains.
+
+If undefeated, it vanishes… for now.
+
+---
+
+## 🗺️ Features
+
+- Persistent daily world progression  
+- AI-generated narration  
+- Clan resource economy  
+- Location modifiers (weather, invasions, blessings, curses)  
+- Boss fights with cooperative resolution  
+- Player titles and achievements  
+- Strategic long-term progression  
+
+---
+
+## 🚀 How to Play
+
+1. Join the force by signing in via GitHub.
+2. Choose one action per day.
+3. Return tomorrow to see what happened.
+4. Adapt to world events.
+5. Survive.
+6. Help your clan win the long game.
+
+---
+
+## ⚙️ Powered By
+
+OpenQuests is built using modern lightweight infrastructure:
+
+- 🤖 GitHub Actions
+- ☁️ Cloudflare Workers 
+- 🧠 Gemini AI as storyteller  
+- 🎨 Tiny Swords asset pack (itch.io)  
+
+Designed to be simple, transparent, and community-driven.
+
+---
+
+## 🧩 Open & Evolving
+
+OpenQuests is an experimental persistent world project and is open to ideas and expansions.
+
+Whether it's new bosses, alternate endings, story arcs or balance adjustments, we're open to suggestions.
+
+Please open an issue or submit a PR.
+
+### Components (public repositories):
+
+- openquests-engine: The core world engine that helps process actions and events.
+- openquests-auth: The authentication service that helps manage players.
+- openquests-schema: The schema that defines the world and to be shared between the engine and the UI.
+- openquests: The game UI that players use to interact with the world.
+- openquests-playground: The experimental playground for testing changes and new updates.
+- openquests-origin: The first ever OpenQuests world (opening soon).
+
+## Legal & Community
+
+- [Terms & Conditions](TERMS.md)
+- [Privacy Policy](PRIVACY.md)
+- [Community Guidelines](COMMUNITY.md)
